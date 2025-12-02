@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey 
+from sqlalchemy import Column, Integer, String, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from ..database import Base
 from datetime import datetime
@@ -20,6 +20,7 @@ class Note(Base):
     id = Column(Integer, primary_key = True, index = True)
     name = Column(String, unique = True, nullable = False, index = True)
     text = Column(String, nullable = False)
+    state = Column(Boolean, default = False)
     user_id = Column(Integer, ForeignKey("users.id"), nullable = False)
     created_at = Column(DateTime, default = datetime.utcnow)
 
