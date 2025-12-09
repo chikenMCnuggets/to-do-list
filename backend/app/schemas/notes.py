@@ -14,6 +14,9 @@ class CreateNote(NotesBase):
 class UpdateNote(NotesBase):
     pass
 
+class DeleteNote(NotesBase):
+    id: int = Field(..., description = "unique id")
+
 class NoteResponse(NotesBase): #Заменить на BaseModel, запросить все необходимые данные
     id: int = Field(..., description = "unique id")
 

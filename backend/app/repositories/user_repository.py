@@ -13,4 +13,9 @@ class UserRepository:
     def get_by_name(self, user_name: str) -> Optional[User]:
         return self.db.query(User).filter(User.name == user_name).first()
 
-####доделать create
+    def create_user(self, user_data: UserCreate) -> User:
+        db_user = User(**user_data.model_dump())
+        self.db.add(db_user)
+        self.db.commit()
+        self.db.refresh(db_user)
+        return db_user
